@@ -19,27 +19,17 @@ const PhotoWall: React.FC<Props> = ({ photos }) => {
     // Margem para garantir que as fotos não fiquem muito próximas das bordas
     const margin = 100;
 
-    // Espaçamento mínimo entre as fotos
-    const minSpacing = 200;
+    // Tamanho da foto
+    const photoWidth = 200; // Largura aproximada da foto
+    const photoHeight = 250; // Altura aproximada da foto
 
-    // Tentativas para evitar sobreposição
-    let x, y;
-    let attempts = 0;
-    const maxAttempts = 100;
+    // Área útil da tela (descontando as margens)
+    const usableWidth = viewportWidth - margin * 2 - photoWidth;
+    const usableHeight = viewportHeight - margin * 2 - photoHeight;
 
-    do {
-      x = Math.floor(Math.random() * (viewportWidth - margin * 2)) + margin;
-      y = Math.floor(Math.random() * (viewportHeight - margin * 2)) + margin;
-      attempts++;
-    } while (
-      // Verifica se a nova posição está muito próxima de outras fotos
-      photos.slice(0, index).some((_, i) => {
-        const prevX = (i + 1) * (viewportWidth / total) - minSpacing;
-        const prevY = (i + 1) * (viewportHeight / total) - minSpacing;
-        return Math.abs(x - prevX) < minSpacing && Math.abs(y - prevY) < minSpacing;
-      }) &&
-      attempts < maxAttempts
-    );
+    // Gerar posições aleatórias dentro da área útil
+    const x = Math.floor(Math.random() * usableWidth) + margin;
+    const y = Math.floor(Math.random() * usableHeight) + margin;
 
     return { x, y };
   };
