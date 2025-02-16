@@ -19,7 +19,7 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
     const viewportWidth = Math.min(window.innerWidth, document.documentElement.clientWidth);
     const viewportHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
 
-    // Tamanho do botão (ajustado para a proporção)
+    // Tamanho do botão
     const buttonWidth = 200;
     const buttonHeight = 50;
 
@@ -29,10 +29,14 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
     const minY = 0;
     const maxY = viewportHeight - buttonHeight;
 
-    // Gerar nova posição próxima à posição atual, mas dentro dos limites
-    const offsetX = (Math.random() - 0.5) * 100; // Movimento máximo de 50px para cada lado
-    const offsetY = (Math.random() - 0.5) * 100; // Movimento máximo de 50px para cada lado
+    // Área de movimento ao redor da posição atual
+    const movementRadius = 200; // Raio de movimento máximo (em pixels)
 
+    // Gerar nova posição dentro da área de movimento
+    const offsetX = (Math.random() - 0.5) * movementRadius; // Movimento aleatório no eixo X
+    const offsetY = (Math.random() - 0.5) * movementRadius; // Movimento aleatório no eixo Y
+
+    // Calcular nova posição, garantindo que o botão não saia da tela
     const newX = Math.max(minX, Math.min(position.x + offsetX, maxX));
     const newY = Math.max(minY, Math.min(position.y + offsetY, maxY));
 
