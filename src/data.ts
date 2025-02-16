@@ -1,5 +1,5 @@
 export const photos = [
-  "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500",
+  "https://i.postimg.cc/KYRwQP8d/Whats-App-Image-2025-02-16-at-00-03-16-5.jpg",
   "https://images.unsplash.com/photo-1537727365640-d9b9d080f266?w=500&h=500",
   "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&h=500",
   "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=500&h=500",
