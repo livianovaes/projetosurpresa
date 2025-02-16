@@ -15,26 +15,13 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
       return;
     }
 
-    // Proporção da tela padrão (1920x1080)
-    const standardWidth = 1920;
-    const standardHeight = 1080;
-
     // Dimensões atuais da viewport
     const viewportWidth = Math.min(window.innerWidth, document.documentElement.clientWidth);
     const viewportHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
 
-    // Fator de escala para ajustar a proporção
-    const scaleX = viewportWidth / standardWidth;
-    const scaleY = viewportHeight / standardHeight;
-    const scale = Math.min(scaleX, scaleY); // Manter a proporção
-
-    // Área central (30% da tela padrão, ajustada para a viewport atual)
-    const centralAreaWidth = standardWidth * 0.3 * scale;
-    const centralAreaHeight = standardHeight * 0.3 * scale;
-
     // Tamanho do botão (ajustado para a proporção)
-    const buttonWidth = 200 * scale;
-    const buttonHeight = 50 * scale;
+    const buttonWidth = 200;
+    const buttonHeight = 50;
 
     // Limites da viewport (garantindo que o botão não saia da tela)
     const minX = 0;
@@ -42,17 +29,16 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
     const minY = 0;
     const maxY = viewportHeight - buttonHeight;
 
-    // Centro da viewport (ajustado para a proporção)
-    const centerX = (viewportWidth - buttonWidth) / 2;
-    const centerY = (viewportHeight - buttonHeight) / 2;
+    // Gerar nova posição próxima à posição atual, mas dentro dos limites
+    const offsetX = (Math.random() - 0.5) * 100; // Movimento máximo de 50px para cada lado
+    const offsetY = (Math.random() - 0.5) * 100; // Movimento máximo de 50px para cada lado
 
-    // Gerar nova posição dentro da área central, respeitando os limites
-    const newX = Math.max(minX, Math.min(centerX + (Math.random() - 0.5) * centralAreaWidth, maxX));
-    const newY = Math.max(minY, Math.min(centerY + (Math.random() - 0.5) * centralAreaHeight, maxY));
+    const newX = Math.max(minX, Math.min(position.x + offsetX, maxX));
+    const newY = Math.max(minY, Math.min(position.y + offsetY, maxY));
 
     setPosition({ x: newX, y: newY });
     setAttempts(prev => prev + 1);
-  }, [attempts, onFinalCatch]);
+  }, [attempts, onFinalCatch, position]);
 
   return (
     <motion.button
