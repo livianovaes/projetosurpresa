@@ -19,28 +19,28 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
     const viewportWidth = Math.min(window.innerWidth, document.documentElement.clientWidth);
     const viewportHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
 
-    // Calculate center point
-    const centerX = viewportWidth / 2;
-    const centerY = viewportHeight / 2;
+    // Button dimensions
+    const buttonWidth = 200; // Largura do botão
+    const buttonHeight = 50; // Altura do botão
 
-    // Define a smaller area around the center (30% of viewport)
+    // Define a central area (30% of viewport)
     const areaWidth = viewportWidth * 0.3;
     const areaHeight = viewportHeight * 0.3;
 
-    // Calculate boundaries relative to center
-    const minX = centerX - areaWidth / 2;
-    const maxX = centerX + areaWidth / 2;
-    const minY = centerY - areaHeight / 2;
-    const maxY = centerY + areaHeight / 2;
+    // Calculate boundaries for the button to stay within the viewport
+    const minX = 0; // Não pode ser menor que 0 (lado esquerdo da tela)
+    const maxX = viewportWidth - buttonWidth; // Não pode ser maior que a largura da tela menos a largura do botão
+    const minY = 0; // Não pode ser menor que 0 (topo da tela)
+    const maxY = viewportHeight - buttonHeight; // Não pode ser maior que a altura da tela menos a altura do botão
 
-    // Button dimensions
-    const buttonWidth = 200;
-    const buttonHeight = 50;
+    // Calculate center point of the central area
+    const centerX = (viewportWidth / 2) - (buttonWidth / 2); // Centralizado horizontalmente
+    const centerY = (viewportHeight / 2) - (buttonHeight / 2); // Centralizado verticalmente
 
-    // Generate random position within central area
-    const newX = Math.max(minX, Math.min(Math.random() * (maxX - minX - buttonWidth) + minX, maxX - buttonWidth));
-    const newY = Math.max(minY, Math.min(Math.random() * (maxY - minY - buttonHeight) + minY, maxY - buttonHeight));
-    
+    // Generate random position within the central area, ensuring it stays within the viewport
+    const newX = Math.max(minX, Math.min(centerX + (Math.random() - 0.5) * areaWidth, maxX));
+    const newY = Math.max(minY, Math.min(centerY + (Math.random() - 0.5) * areaHeight, maxY));
+
     setPosition({ x: newX, y: newY });
     setAttempts(prev => prev + 1);
   }, [attempts, onFinalCatch]);
