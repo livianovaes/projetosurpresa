@@ -1,10 +1,15 @@
 export const photos = [
   "https://i.postimg.cc/KYRwQP8d/Whats-App-Image-2025-02-16-at-00-03-16-5.jpg",
-  "https://images.unsplash.com/photo-1537727365640-d9b9d080f266?w=500&h=500",
-  "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&h=500",
-  "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=500&h=500",
-  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&h=500",
-  "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&h=500",
+  "https://i.postimg.cc/TwC6VsLx/Whats-App-Image-2025-02-16-at-00-03-16-4.jpg",
+  "https://i.postimg.cc/rmdB4pk1/Whats-App-Image-2025-02-16-at-00-03-16-2.jpg",
+  "https://i.postimg.cc/Dy7CkzMx/Whats-App-Image-2025-02-16-at-00-03-16-3.jpg",
+  "https://i.postimg.cc/vH8v2N4j/Whats-App-Image-2025-02-16-at-00-03-16-1.jpg",
+  "https://i.postimg.cc/mDR9zPMq/Whats-App-Image-2025-02-16-at-00-03-16.jpg",
+  "https://i.postimg.cc/fW8HssQZ/Whats-App-Image-2025-02-16-at-17-02-14-1.jpg",
+  "https://i.postimg.cc/BQDMKK1Z/Whats-App-Image-2025-02-16-at-17-02-13.jpg",
+  "https://i.postimg.cc/SRmNf8x0/Whats-App-Image-2025-02-16-at-17-02-13-1.jpg",
+  "https://i.postimg.cc/1XRsqQvs/Whats-App-Image-2025-02-16-at-17-02-14.jpg",
+  "https://i.postimg.cc/7L1FMRG6/Whats-App-Image-2025-02-16-at-17-02-14-2.jpg",
 ];
 
 export const questions = [
@@ -13,10 +18,10 @@ export const questions = [
     question: "How did we meet?",
     options: [
       "Scrim Room",
-      "At the coffee shop",
+      "Twitter",
       "Through mutual friends",
-      "At a party",
-      "Online gaming"
+      "Discord",
+      "Parallel"
     ],
     correctAnswer: "Scrim Room"
   },
