@@ -15,31 +15,40 @@ const TrickButton: React.FC<Props> = ({ onFinalCatch }) => {
       return;
     }
 
-    // Get viewport dimensions
+    // Proporção da tela padrão (1920x1080)
+    const standardWidth = 1920;
+    const standardHeight = 1080;
+
+    // Dimensões atuais da viewport
     const viewportWidth = Math.min(window.innerWidth, document.documentElement.clientWidth);
     const viewportHeight = Math.min(window.innerHeight, document.documentElement.clientHeight);
 
-    // Button dimensions
-    const buttonWidth = 200; // Largura do botão
-    const buttonHeight = 50; // Altura do botão
+    // Fator de escala para ajustar a proporção
+    const scaleX = viewportWidth / standardWidth;
+    const scaleY = viewportHeight / standardHeight;
+    const scale = Math.min(scaleX, scaleY); // Manter a proporção
 
-    // Define a central area (30% of viewport)
-    const areaWidth = viewportWidth * 0.3;
-    const areaHeight = viewportHeight * 0.3;
+    // Área central (30% da tela padrão, ajustada para a viewport atual)
+    const centralAreaWidth = standardWidth * 0.3 * scale;
+    const centralAreaHeight = standardHeight * 0.3 * scale;
 
-    // Calculate boundaries for the button to stay within the viewport
-    const minX = 0; // Não pode ser menor que 0 (lado esquerdo da tela)
-    const maxX = viewportWidth - buttonWidth; // Não pode ser maior que a largura da tela menos a largura do botão
-    const minY = 0; // Não pode ser menor que 0 (topo da tela)
-    const maxY = viewportHeight - buttonHeight; // Não pode ser maior que a altura da tela menos a altura do botão
+    // Tamanho do botão (ajustado para a proporção)
+    const buttonWidth = 200 * scale;
+    const buttonHeight = 50 * scale;
 
-    // Calculate center point of the central area
-    const centerX = (viewportWidth / 2) - (buttonWidth / 2); // Centralizado horizontalmente
-    const centerY = (viewportHeight / 2) - (buttonHeight / 2); // Centralizado verticalmente
+    // Limites da viewport (garantindo que o botão não saia da tela)
+    const minX = 0;
+    const maxX = viewportWidth - buttonWidth;
+    const minY = 0;
+    const maxY = viewportHeight - buttonHeight;
 
-    // Generate random position within the central area, ensuring it stays within the viewport
-    const newX = Math.max(minX, Math.min(centerX + (Math.random() - 0.5) * areaWidth, maxX));
-    const newY = Math.max(minY, Math.min(centerY + (Math.random() - 0.5) * areaHeight, maxY));
+    // Centro da viewport (ajustado para a proporção)
+    const centerX = (viewportWidth - buttonWidth) / 2;
+    const centerY = (viewportHeight - buttonHeight) / 2;
+
+    // Gerar nova posição dentro da área central, respeitando os limites
+    const newX = Math.max(minX, Math.min(centerX + (Math.random() - 0.5) * centralAreaWidth, maxX));
+    const newY = Math.max(minY, Math.min(centerY + (Math.random() - 0.5) * centralAreaHeight, maxY));
 
     setPosition({ x: newX, y: newY });
     setAttempts(prev => prev + 1);
